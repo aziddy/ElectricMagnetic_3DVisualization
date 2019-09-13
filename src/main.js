@@ -1,134 +1,130 @@
+class EM3DV {
 
-//https://www.youtube.com/watch?v=RkuBWEkBrZA
 
-function setup() {
-  createCanvas(800, 400, WEBGL);
-  //setAttributes('antialias', true);
-  fill(237, 34, 93);
-  stroke(245, 50, 200);
-  textSize(width / 3);
-  textAlign(CENTER, CENTER);
-  
- // strokeWeight(3);
-}
+static ISOMETRIC = 0;
+static TOP = 1; static Y_X = 1;
+static X_Z= 2;
 
-function draw() {
-  scale(1.5,1.5,-1.5); 
-  background(200);
-  //rotateY(2.7);
-//  rotateX(1.25);
-  animate3D();
+static CARTESIAN = 0;
+static SPHERICAL = 1;
+static CYLINDRICAL = 2;
 
- 
-  EMFV.partSphere(50, 0, (((Math.PI*2)/1)*1), 0, Math.PI/2)
-  //EMFV.partRadiusSphere(25, 50, 0, (((Math.PI*2)/8)*6), 0, Math.PI)
-  axis();
-  
-}
+static ROTATE_AZIMUTH = 0;
+static ROTATE_POLAR_ANGLE = 1;
 
-function animate3D(){
-  rotateY(2.7);
-  rotateX(frameCount * 0.01);
- // rotateZ(frameCount * 0.01);
-}
 
-function mouseClicked() {
-  beginShape();
-  strokeWeight(3);
-  stroke(0);
-  vertex(0,0,0);
-  vertex(0,200,200);  
-  endShape();
-}
+static rotate_X = 0;
+static rotate_Y = 0;
+static rotate_Z = 0;
 
-function axis(){
-  beginShape();
-  strokeWeight(3);
-  stroke(0);
-  vertex(0,0,0);
-  vertex(0,200,0);  
-  endShape();
-  
-  beginShape();
-  strokeWeight(3);
-  stroke(0,255,0);
-  vertex(0,0,0);
-  vertex(200,0,0);  
-  endShape();
-  
-  beginShape();
-  strokeWeight(3);
-  stroke(0,0,255);
-  vertex(0,0,0);
-  vertex(0,0,200);  
-  endShape();
-   
-  text('p5.jssadsaasdasdadsadasdsadsadasdasdasdsadas', 0, 0);
-}
+static zoom = 1;
 
-function sph(radius) {
+  /* Place in the Sketch's setup function */
+  static setupInit() {
 
-  //beginShape(TRIANGLE_STRIP);
-  beginShape();
-  stroke(245, 50, 200);
-  
-  var r = radius
-  var total = 50;
-  for(var i = 0; i < total; i++) {
-    var lon = map(i, 0, total, 0, Math.PI*2);
-    for (var j = 0; j < total; j++) {
-      var lat = map(j,0,total,-(Math.PI/2),(Math.PI/2))
-      var px = r * sin(lon) * cos(lat)
-      var py = r * sin(lon) * sin(lat)
-      var pz = r * cos(lon)
-      vertex(px, py, pz);
+  }
+
+
+  static setCameraAngle(x, y, z) {
+    rotateY(y);
+    rotateX(x);
+    rotateZ(z);
+  }
+
+
+  static setCameraAngle(presetAngle) {
+    
+    if(presetAngle == this.ISOMETRIC){
+
+      this.rotate_X = Math.PI;
+      this.rotate_Y = (Math.PI/8)*3;
+      this.rotate_Z = Math.PI/4;
+
+    } else if(presetAngle == this.TOP || presetAngle == this.Y_X){
+      this.rotate_X = Math.PI;
+      this.rotate_Y = 0;
+      this.rotate_Z = Math.PI/2;
+
+    } else if(presetAngle == this.X_Z){
+     this.rotate_Y = Math.PI/2;
+     this.rotate_Z = Math.PI;
+
     }
   }
-  endShape();
-}
 
-
-function cyl() {
-  var pz = 0;
-  beginShape();
-  for(var g = 0; g < 40; g+=1) {
-  for (var i = 0; i < 40; i++) {
-    //angle = TWO_PI / n * i;
-    px = 70 * sin( ((Math.PI*2)/40)*i);
-    py = 70 *cos( ((Math.PI*2)/40)*i);
-    vertex(px, py, pz);
+  static runCamera() {
+    scale(this.zoom,this.zoom,-this.zoom); 
+    rotateY(this.rotate_X);
+    rotateX(this.rotate_Y);
+    rotateZ(this.rotate_Z);
   }
-    pz = g;
+
+
+  static animateCamera(preset){
+    if(preset == this.ROTATE_AZIMUTH){
+      this.rotate_Z += 0.03;
+    } else if(preset == this.ROTATE_POLAR_ANGLE){
+      // NOT WORKING
+    } 
   }
-  endShape();
-}
 
 
 
-class EMFV {
-  constructor() {
-  }
+
+ 
+
+
+  static showAngles(){
+
+    beginShape();
+    strokeWeight(3);
+    noFill();
+    stroke(0,255,255);
+    for(var i = 0; i < 50; i++){
+      var angle = map(i, 0, 50, 0, (Math.PI*2)*mouseX/1000);
+      var x = 70 * cos(angle)
+      var y = 70 * sin(angle)
+      vertex(x,y,0);
+    }
+    endShape();
   
-  static fullSphere(){
-    
+    push()
+    scale(1,-1,1); 
+    beginShape();
+    rotateX(Math.PI)
+    rotateY(Math.PI/2)
+    strokeWeight(3);
+    noFill();
+    stroke(255,225,0);
+
+    for(var i = 0; i < 50; i++){
+      var angle = map(i, 0, 50, 0, (Math.PI)*mouseY/600);
+      var x = 70 * cos(angle)
+      var y = 70 * sin(angle)
+      vertex(x,y,0);
+    }
+    endShape();
+    pop()
   }
-  
+
+
+
+  static toDegrees (angle) {
+    return angle * (180 / Math.PI);
+  }
+
   static partSphere(radius, startingPhi, endingPhi, startingTheta, endingTheta){
 
-   // var total = 50;
-    var numberOfDiscretePoints = 40;
+    var numberOfDiscretePoints = 30;
+    fill(237, 34, 93);
     
     var vectorArray = new Array(numberOfDiscretePoints);
     for (var x = 0; x < vectorArray.length; x++) {
       vectorArray[x] = new Array(numberOfDiscretePoints);
     }
 
-    
-    //beginShape(TRIANGLE_STRIP);
-  //  beginShape();
     strokeWeight(1);
     stroke(245, 50, 200);
-    //stroke(150);
 
     var r = radius
     for(var i = 0; i < numberOfDiscretePoints; i++) {
@@ -142,77 +138,121 @@ class EMFV {
         
         var temp = [px, py, pz];
         vectorArray[i][j] = temp;
-        
-       // vertex(px, py, pz);
-        
       }
     }
     
-    for(var i = 0; i < numberOfDiscretePoints; i++) {
+    for(var i = 0; i < numberOfDiscretePoints-1; i++) {
       beginShape();
-      //beginShape(TRIANGLE_STRIP);
-      
+      vertex(0,0,0); // needed to fill inside
       for (var j = 0; j < numberOfDiscretePoints; j++) {
         
         var v1 = vectorArray[i][j];
         strokeWeight(2);
         vertex(v1[0], v1[1], v1[2]);
                 
-        var v2 = vectorArray[i][j];
-     //   strokeWeight(2);
-      //  vertex(v2[0], v2[1], v2[2]);
+        var v2 = vectorArray[i+1][j];
+        vertex(v2[0], v2[1], v2[2]);
 
       }
       endShape();
     }
-    
-    //endShape();
   }
-  
-  
-    static partRadiusSphere(radiusStart, endRadius, startingPhi, endingPhi, startingTheta, endingTheta){
 
-    //beginShape(TRIANGLE_STRIP);
-    beginShape();
+
+  static cylinder(radius, startingTheta, endingTheta, height) {
+
+    var numberOfDiscretePoints = 36;
+
+    fill(237, 34, 93);
     strokeWeight(1);
-    //stroke(245, 50, 200);
-    stroke(150);
-      
-    var r = radiusStart
-    var total = 50;
-      
+    stroke(245, 50, 200);
     
-    for(var i = 0; i < total; i++) {
-      var theta = map(i, 0, total, startingTheta, endingTheta);
-      for (var j = 0; j < total; j++) {
-        var phi = map(j,0,total, startingPhi, endingPhi)
-        
-        var px = r * sin(theta) * cos(phi)
-        var py = r * sin(theta) * sin(phi)
-        var pz = r * cos(theta)
-        vertex(px, py, pz);
-      }
-    }
-      
-      
-      
+    // First Inside of Cylinder
+    beginShape();
+    vertex(0, 0, 0);
+    vertex(0, 0, height );
+    vertex(radius*cos(startingTheta), radius*sin(startingTheta), height );
+    vertex(radius*cos(startingTheta), radius*sin(startingTheta), 0 );
+    endShape(CLOSE);
 
-    r = endRadius
+    // Second Inside of Cylinder
+    beginShape();
+    vertex(0, 0, 0);
+    vertex(0, 0, height );
+    vertex(radius*cos(endingTheta), radius*sin(endingTheta), height );
+    vertex(radius*cos(endingTheta), radius*sin(endingTheta), 0 );
+    endShape(CLOSE);
 
-    for(var i = 0; i < total; i++) {
-      var theta = map(i, 0, total, startingTheta, endingTheta);
-      for (var j = 0; j < total; j++) {
-        var phi = map(j,0,total, startingPhi, endingPhi)
-        
-        var px = r * sin(theta) * cos(phi)
-        var py = r * sin(theta) * sin(phi)
-        var pz = r * cos(theta)
-        vertex(px, py, pz);
-      }
+    for ( var i = 0; i < numberOfDiscretePoints; i++) {
+
+      var theta = map(i, 0, numberOfDiscretePoints, startingTheta, endingTheta);
+      var theta1 = map(i+1, 0, numberOfDiscretePoints, startingTheta, endingTheta);
+
+      // Top of Cylinder
+      beginShape();
+      vertex(radius*cos(theta), radius*sin(theta), height );
+      vertex(radius*cos(theta1), radius*sin(theta1), height );
+      vertex(0, 0, height);
+      endShape(CLOSE);
+      
+      // Bottom of Cylinder
+      beginShape();
+      vertex(radius*cos(theta), radius*sin(theta), 0 );
+      vertex(radius*cos(theta1), radius*sin(theta1), 0 );
+      vertex(0, 0, 0);
+      endShape(CLOSE);
+
+      // Side of Cylinder
+      beginShape();
+      vertex(radius*cos(theta), radius*sin(theta), 0 );
+      vertex(radius*cos(theta), radius*sin(theta), height );
+      vertex(radius*cos(theta1), radius*sin(theta1), height );
+      vertex(radius*cos(theta1), radius*sin(theta1), 0 );
+      endShape(CLOSE);
+
     }
-    endShape();
   }
-  
-  
-  
+
+
+  static showAxis() {
+
+    beginShape();
+    strokeWeight(3);
+    // +y black
+    stroke(0);
+    vertex(0,0,0);
+    vertex(0,200,0);  
+    endShape();
+
+    // -y black
+    stroke(100,100,100);
+    vertex(0,0,0);
+    vertex(0,-200,0);  
+    endShape();
+    
+    // +x green
+    beginShape();
+    strokeWeight(3);stroke(0,200,0);
+    vertex(0,0,0); vertex(200,0,0); 
+    endShape();
+
+    // -x green
+    beginShape();
+    strokeWeight(3);stroke(0,255,0);
+    vertex(0,0,0); vertex(-200,0,0); 
+    endShape();
+    
+    // +z blue
+    beginShape();
+    strokeWeight(3); stroke(0,0,255);
+    vertex(0,0,0); vertex(0,0,200); 
+    endShape();
+
+    // -z blue
+    beginShape();
+    strokeWeight(3); stroke(0,0,150);
+    vertex(0,0,0); vertex(0,0,-200); 
+    endShape();
+    
+  }
 }

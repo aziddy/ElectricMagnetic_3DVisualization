@@ -1,5 +1,5 @@
 # ElectricMagnetic_3DVisualization
-Open Source Tool for Visualizing Electrical/Magnetic 3D Questions
+Open Source Tool for Visualizing Electrical/Magnetic 3D Questions in Browser with p5js
 </br>
 </br>
 My university and a lot of other university’s dont teach Vector calculus and Electric/Magnetic Field courses very well. Due to inability to communicate ideas/equations/formulas in 3D space

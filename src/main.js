@@ -114,44 +114,6 @@ static zoom = 1;
 
     }
   }
-
-
-    var numberOfDiscretePoints = 10;
-
-    var r = 90
-    for(var i = 0; i < numberOfDiscretePoints; i++) {
-      var theta = map(i, 0, numberOfDiscretePoints, 0, Math.PI);
-      for (var j = 0; j < numberOfDiscretePoints; j++) {
-        var phi = map(j, 0, numberOfDiscretePoints, 0, 2*Math.PI)
-        
-        var px = r * sin(theta) * cos(phi)
-        var py = r * sin(theta) * sin(phi)
-        var pz = r * cos(theta)
-        
-       /* push()
-        scale(1.0,1.0,1.0)
-        rotateZ(-Math.PI/2);
-        rotateZ(theta);
-        translate(py, px, 0);
-        cone(2, 4);
-        translate(0, -3, 0);
-        cylinder(1, 3);
-        pop() */
-
-      }
-    }
-
-    /*
-    for(var a = -50; a < 50; a+=10){
-      for(var b = -50; b < 50; b+=10){
-        push()
-        translate(a, 0, b);
-        cone(2, 4);
-        translate(0, -3, 0);
-        cylinder(1, 3);
-        pop()
-      }
-    }*/
   }
 
 

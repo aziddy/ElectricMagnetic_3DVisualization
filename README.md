@@ -13,6 +13,7 @@ Its hard for Electromagnetic courses to communicate and visually explain ideas/e
 
 <br>
 <br>
+
 # Inspiration
 <br>
 

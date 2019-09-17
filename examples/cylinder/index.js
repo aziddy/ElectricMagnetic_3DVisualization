@@ -26,7 +26,7 @@ function setup() {
 function draw() {
     //EM3DV.animateCamera(EM3DV.ROTATE_AZIMUTH);
     EM3DV.runCamera();
-    //orbitControl();
+    
     background(200);
  
   //animate3D();
@@ -42,15 +42,11 @@ function draw() {
  // pop()
  
 
-  EM3DV.partSphere(50, 0, (Math.PI*2)*mouseX/1000, 0, Math.PI*mouseY/600)
-  //EM3DV.cylinder(40, Math.PI/3, (Math.PI*2)*mouseX/700, 40/(mouseY/100));
+  //EM3DV.partSphere(50, 0, (Math.PI*2)*mouseX/1000, 0, Math.PI*mouseY/600)
+    EM3DV.cylinder(40, Math.PI/3, (Math.PI*2)*mouseX/700, 40/(mouseY/100));
 
   EM3DV.showAxis();
-  EM3DV.showSphericalAngles();
-
-  EM3DV.diverganceVectorField();
-  //EM3DV.planeVectorField();
-
+  EM3DV.showCylindricalAngles();
 }
 
 function animate3D(){

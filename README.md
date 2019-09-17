@@ -10,7 +10,9 @@ Its hard for Electromagnetic courses to communicate and visually explain ideas/e
   <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/ElectricMagnetic_3DVisualization/blob/master/media/beta_spherical_gif.gif?raw=true" width="300"/>
 </p>
 
-
+### Ideal For
+* Vector Calc Courses
+* Electromagnetic Courses
 <br>
 <br>
 

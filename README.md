@@ -23,8 +23,8 @@ Inspired by 3D Visualization software made for Chinese Elementary schools
 <br>
  <p align="center" style="vertical-align: top; position: relative" >
    <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/Electromagnetic_3D_Visualization/blob/master/media/inspiration1.gif?raw=true" width="400"/>
-   <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/Electromagnetic_3D_Visualization/blob/master/media/inspiration2.gif?raw=true" width="400"/>
-  <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/Electromagnetic_3D_Visualization/blob/master/media/inspiration3.gif?raw=true" width="400"/>
+   <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/Electromagnetic_3D_Visualization/blob/master/media/inspiration3.gif?raw=true" width="400"/>
+  <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/Electromagnetic_3D_Visualization/blob/master/media/inspiration2.gif?raw=true" width="400"/>
 </p>
 <br>
 

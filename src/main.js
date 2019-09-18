@@ -166,7 +166,7 @@ static zoom = 1;
     noFill();
     stroke(0,255,255);
     for(var i = 0; i < 50; i++){
-      var angle = map(i, 0, 50, 0, (Math.PI*2)*mouseX/1000);
+      var angle = map(i, 0, 50, Math.PI/3, (Math.PI*2)*mouseX/1000);
       var x = 70 * cos(angle)
       var y = 70 * sin(angle)
       vertex(x,y,0);

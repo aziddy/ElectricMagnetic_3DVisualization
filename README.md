@@ -1,4 +1,4 @@
-# ElectricMagnetic_3D_Visualization
+# Electromagnetic_3D_Visualization
 Open Source Tool for Visualizing 3D Electromagnetic Problems in Browser with p5js
 </br>
 </br>

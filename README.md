@@ -20,6 +20,7 @@ Its hard for Electromagnetic courses to communicate and visually explain ideas/e
 # Inspiration
 Inspired by 3D Visualization software made for Chinese Elementary schools
 <br>
+<br>
  <p align="center" style="vertical-align: top; position: relative" >
    <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/Electromagnetic_3D_Visualization/blob/master/media/inspiration1.gif?raw=true" width="400"/>
    <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/Electromagnetic_3D_Visualization/blob/master/media/inspiration2.gif?raw=true" width="400"/>

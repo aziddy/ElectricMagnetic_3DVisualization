@@ -12,7 +12,6 @@ static CYLINDRICAL = 2;
 static ROTATE_AZIMUTH = 0;
 static ROTATE_POLAR_ANGLE = 1;
 
-
 static rotate_X = 0;
 static rotate_Y = 0;
 static rotate_Z = 0;
@@ -35,7 +34,6 @@ static zoom = 1;
   static setCameraAngle(presetAngle) {
     
     if(presetAngle == this.ISOMETRIC){
-
       this.rotate_X = Math.PI;
       this.rotate_Y = (Math.PI/8)*3;
       this.rotate_Z = Math.PI/4;
@@ -77,7 +75,6 @@ static zoom = 1;
     stroke(0,255,255);
 
     for(var a = -50; a < 50; a+=10){
-      
       for(var b = -50; b < 50; b+=10){
         push()
         translate(a, 0, b);
@@ -86,7 +83,6 @@ static zoom = 1;
         cylinder(1, 3);
         pop()
       }
-
     }
   }
 
@@ -98,7 +94,6 @@ static zoom = 1;
 
     for(var j = 0; j < 10; j++) {
       var phi = map(j, 0, 10, 0, Math.PI*2);
-
     for(var i = 0; i < 10; i++) {
       var theta = map(i, 0, 10, 0, Math.PI);
 
@@ -155,24 +150,18 @@ static zoom = 1;
 
 
 
-
- 
-
-
   static showCylindricalAngles(){
-
     beginShape();
     strokeWeight(3);
     noFill();
     stroke(0,255,255);
     for(var i = 0; i < 50; i++){
-      var angle = map(i, 0, 50, Math.PI/3, (Math.PI*2)*mouseX/1000);
+      var angle = map(i, 0, 50, Math.PI/3, (Math.PI*2)*mouseX/700);
       var x = 70 * cos(angle)
       var y = 70 * sin(angle)
       vertex(x,y,0);
     }
     endShape();
-
 
     beginShape();
     strokeWeight(3);
@@ -190,8 +179,9 @@ static zoom = 1;
     return angle * (180 / Math.PI);
   }
 
-  static partSphere(radius, startingPhi, endingPhi, startingTheta, endingTheta){
 
+
+  static partSphere(radius, startingPhi, endingPhi, startingTheta, endingTheta){
     var numberOfDiscretePoints = 30;
     fill(237, 34, 93);
     
@@ -235,9 +225,44 @@ static zoom = 1;
     }
   }
 
+/*  */
+  static boundary_question(plane){
+
+    noFill();
+
+    if(plane == this.Y_X){
+      push()
+      translate(0,0,50)
+       circle(0, 0, 50);
+       circle(0, 0, 75);
+
+       beginShape()
+       stroke(200,140,200)
+        vertex(0,0,0)
+        vertex(18,18,0)
+       endShape()
+
+       beginShape()
+       stroke(200,0,200)
+        vertex(18,18,0)
+        vertex(27,27,0)
+       endShape()
+
+       beginShape()
+       stroke(20,200,255)
+        vertex(27,27,0)
+        vertex(50,50,0)
+       endShape()
+
+        fill(0, 102, 153);
+       pop();
+    } else if (plane == this.X_Z){
+
+       
+    }
+  }
 
   static cylinder(radius, startingTheta, endingTheta, height) {
-
     var numberOfDiscretePoints = 36;
 
     fill(237, 34, 93);

@@ -8,6 +8,7 @@ var pg2;
 
 var movement_speed = 0.3;
 
+
 function setup() {
   createCanvas(800, 500, WEBGL);
   //setAttributes('antialias', true);
@@ -19,37 +20,23 @@ function setup() {
    pg2 =  createGraphics(120, 50);
     pg2.textSize(30 * zoom);
 
-    EM3DV.setCameraAngle(EM3DV.ISOMETRIC);
+    EM3DV.setCameraAngle(EM3DV.Y_X);
     EM3DV.zoom = 2.5;
 }
 
 function draw() {
     //EM3DV.animateCamera(EM3DV.ROTATE_AZIMUTH);
     EM3DV.runCamera();
-    //orbitControl();
     background(200);
- 
-  //animate3D();
-  /*
-  push()
-  scale(-zoom,zoom,-zoom);
-  strokeWeight(0);
-  //pg.text('Y', 0, 100);
-  rotateZ(-(Math.PI*2)*mouseX/700) */
-  //pg2.text( /*toDegrees(((Math.PI*2)*mouseX/700)).toFixed(0)*/ "3" +'Φ', 0, 35);
-  //texture(pg2);
- // rect(0, 40, 40, 40);
- // pop()
- 
 
-  EM3DV.partSphere(50, 0, (Math.PI*2)*mouseX/1000, 0, Math.PI*mouseY/600)
+  EM3DV.partSphere(50, 0, (Math.PI*2.075), 0, Math.PI)
   //EM3DV.cylinder(40, Math.PI/3, (Math.PI*2)*mouseX/700, 40/(mouseY/100));
 
   EM3DV.showAxis();
-  EM3DV.showSphericalAngles();
 
-  //EM3DV.diverganceVectorField();
-  //EM3DV.planeVectorField();
+  EM3DV.boundary_question(EM3DV.Y_X);
+
+  //EM3DV.showSphericalAngles();
 
 }
 

@@ -5,7 +5,7 @@ Open Source Tool for Visualizing 3D Electromagnetic Problems in Browser with p5j
 Its hard for Electromagnetic courses to communicate and visually explain ideas/equations/formulas in 3D space. So heres a tool to easily show 
 
  <p align="center" style="vertical-align: top; position: relative" >
-   <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/ElectricMagnetic_3DVisualization/blob/master/media/beta_cylinder.gif?raw=true" width="474"/>
+   <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/ElectricMagnetic_3DVisualization/blob/master/media/beta_cylinder.gif?raw=true" width="470"/>
    <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/ElectricMagnetic_3DVisualization/blob/master/media/beta_spherical2.gif?raw=true" width="390"/>
   <img align="top" style="vertical-align:top;position: relative" src="https://github.com/aziddy/ElectricMagnetic_3DVisualization/blob/master/media/beta_spherical_gif.gif?raw=true" width="390"/>
 </p>

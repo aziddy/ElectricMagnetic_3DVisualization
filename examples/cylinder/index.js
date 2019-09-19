@@ -19,6 +19,8 @@ function setup() {
    pg2 =  createGraphics(120, 50);
     pg2.textSize(30 * zoom);
 
+    EM3DV.setupInit();
+
     EM3DV.setCameraAngle(EM3DV.ISOMETRIC);
     EM3DV.zoom = 2.5;
 }

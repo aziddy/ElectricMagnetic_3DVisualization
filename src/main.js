@@ -1,26 +1,24 @@
 class EM3DV {
-
-
-static ISOMETRIC = 0;
-static TOP = 1; static Y_X = 1;
-static X_Z= 2;
-
-static CARTESIAN = 0;
-static SPHERICAL = 1;
-static CYLINDRICAL = 2;
-
-static ROTATE_AZIMUTH = 0;
-static ROTATE_POLAR_ANGLE = 1;
-
-static rotate_X = 0;
-static rotate_Y = 0;
-static rotate_Z = 0;
-
-static zoom = 1;
-
+ 
   /* Place in the Sketch's setup function */
   static setupInit() {
-
+    this.ISOMETRIC = 0;
+    this.TOP = 1; 
+    this.Y_X = 1;
+    this.X_Z= 2;
+    
+    this.CARTESIAN = 0;
+    this.SPHERICAL = 1;
+    this.CYLINDRICAL = 2;
+    
+    this.ROTATE_AZIMUTH = 0;
+    this.ROTATE_POLAR_ANGLE = 1;
+    
+    this.rotate_X = 0;
+    this.rotate_Y = 0;
+    this. rotate_Z = 0;
+    
+    this.zoom = 1;
   }
 
 

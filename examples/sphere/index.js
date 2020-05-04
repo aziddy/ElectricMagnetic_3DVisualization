@@ -6,6 +6,11 @@ var zoom = 2.5
 
 var pg2;
 
+let myFont;
+function preload() {
+  myFont = loadFont('/assets/IndieFlower-Regular.ttf');
+}
+
 var movement_speed = 0.3;
 
 function setup() {
@@ -32,12 +37,12 @@ function draw() {
     background(200);
  
   //animate3D();
-  /*
-  push()
+  
+  /*push()
   scale(-zoom,zoom,-zoom);
   strokeWeight(0);
-  //pg.text('Y', 0, 100);
-  rotateZ(-(Math.PI*2)*mouseX/700) */
+  pg.text('Y', 0, 100);
+  rotateZ(-(Math.PI*2)*mouseX/700) ;*/
   //pg2.text( /*toDegrees(((Math.PI*2)*mouseX/700)).toFixed(0)*/ "3" +'Φ', 0, 35);
   //texture(pg2);
  // rect(0, 40, 40, 40);

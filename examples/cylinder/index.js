@@ -5,8 +5,12 @@ let pg;
 var zoom = 2.5
 
 var pg2;
-
 var movement_speed = 0.3;
+
+let myFont;
+function preload() {
+  myFont = loadFont('/assets/IndieFlower-Regular.ttf');
+}
 
 function setup() {
   createCanvas(800, 500, WEBGL);
@@ -22,26 +26,44 @@ function setup() {
     EM3DV.setupInit();
 
     EM3DV.setCameraAngle(EM3DV.ISOMETRIC);
-    EM3DV.zoom = 2.5;
+	EM3DV.zoom = 2.5;
+
 }
 
 function draw() {
     //EM3DV.animateCamera(EM3DV.ROTATE_AZIMUTH);
     EM3DV.runCamera();
     
-    background(200);
- 
+	background(200);
+	
+
+	textSize(32);
+	textFont(myFont);
+	
+	/*push();
+	rotateX(Math.PI);
+	rotateZ(Math.PI);
+	fill(50);
+	text('A', 0, 0);
+	fill(0, 102, 153);
+	text('ABC', 10, 60);
+	fill(0, 102, 153, 51);
+	text('C', 10, 90);
+	pop();*/
+
   //animate3D();
-  /*
-  push()
-  scale(-zoom,zoom,-zoom);
-  strokeWeight(0);
-  //pg.text('Y', 0, 100);
-  rotateZ(-(Math.PI*2)*mouseX/700) */
-  //pg2.text( /*toDegrees(((Math.PI*2)*mouseX/700)).toFixed(0)*/ "3" +'Φ', 0, 35);
-  //texture(pg2);
- // rect(0, 40, 40, 40);
- // pop()
+  
+	push()
+	scale(-zoom,zoom,-zoom);
+	strokeWeight(0);
+	fill(50);
+	textSize(10);
+	text('Y', 0, 0);
+	rotateZ(-(Math.PI*2)*mouseX/700) 
+	text(EM3DV.toDegrees(((Math.PI*2)*mouseX/700)).toFixed(0) +'Φ', 0, 35);
+	//texture(pg2);
+	// rect(0, 40, 40, 40);
+	pop()
  
 
   //EM3DV.partSphere(50, 0, (Math.PI*2)*mouseX/1000, 0, Math.PI*mouseY/600)

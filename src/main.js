@@ -19,6 +19,8 @@ class EM3DV {
     this. rotate_Z = 0;
     
     this.zoom = 1;
+    this.sphereSliceAnimate_theta = 0;
+    this.sphereSliceAnimate_phi = Math.PI/500;
   }
 
 
@@ -92,23 +94,40 @@ class EM3DV {
 
     for(var j = 0; j < 10; j++) {
       var phi = map(j, 0, 10, 0, Math.PI*2);
-    for(var i = 0; i < 10; i++) {
-      var theta = map(i, 0, 10, 0, Math.PI);
+		for(var i = 0; i < 10; i++) {
+			var theta = map(i, 0, 10, 0, Math.PI);
 
-      push()
-      scale(1.0,1.0,1.0)
-      rotateZ(-phi)
-      rotateX(theta-Math.PI/2);
-      translate(0, 60, 0);
-      cone(2, 4);
-      translate(0, -3, 0);
-      cylinder(1, 3);
-      pop()
+			push();
+			scale(1.0,1.0,1.0)
+			rotateZ(-phi)
+			rotateX(theta-Math.PI/2);
+			translate(0, 60, 0);
+			cone(2, 4);
+			translate(0, -3, 0);
+			cylinder(1, 3);
+			pop();
 
-    }
+		}
+ 	}
   }
-  }
 
+
+  
+static sphereSliceAnimate(){
+
+  this.partSphere(50, 0, this.sphereSliceAnimate_phi, 0, this.sphereSliceAnimate_theta);
+
+  if(this.sphereSliceAnimate_theta < Math.PI+0.1){
+    this.sphereSliceAnimate_theta+=0.025;
+  } else if (this.sphereSliceAnimate_phi < (Math.PI*2)+0.2){
+    this.sphereSliceAnimate_phi+=0.025;
+  }
+  
+  // Animate Theta first 
+
+  // Now animate Phi
+
+}
 
 
 
@@ -138,6 +157,40 @@ class EM3DV {
 
     for(var i = 0; i < 50; i++){
       var angle = map(i, 0, 50, 0, (Math.PI)*mouseY/600);
+      var x = 70 * cos(angle)
+      var y = 70 * sin(angle)
+      vertex(x,y,0);
+    }
+    endShape();
+    pop()
+  }
+
+
+  static showSphericalAngles(phi, theta){
+
+    beginShape();
+    strokeWeight(3);
+    noFill();
+    stroke(0,255,255);
+    for(var i = 0; i < 50; i++){
+      var angle = map(i, 0, 50, 0, phi);
+      var x = 70 * cos(angle)
+      var y = 70 * sin(angle)
+      vertex(x,y,0);
+    }
+    endShape();
+  
+    push()
+    scale(1,-1,1); 
+    beginShape();
+    rotateX(Math.PI)
+    rotateY(Math.PI/2)
+    strokeWeight(3);
+    noFill();
+    stroke(255,225,0);
+
+    for(var i = 0; i < 50; i++){
+      var angle = map(i, 0, 50, 0, theta);
       var x = 70 * cos(angle)
       var y = 70 * sin(angle)
       vertex(x,y,0);
